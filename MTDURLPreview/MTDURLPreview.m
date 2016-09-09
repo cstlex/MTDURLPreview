@@ -46,6 +46,22 @@ static MTDURLPreviewCache* mtd_preview_cache() {
     return self;
 }
 
+- (instancetype)initWithTitle:(NSString *)title
+                       domain:(NSString *)domain
+                     imageURL:(NSURL *)imageURL
+                      content:(NSString *)content
+                          url:(NSString *)url {
+    if ((self = [super init])) {
+        _title = [title copy];
+        _domain = [domain copy];
+        _imageURL = imageURL;
+        _content = [content copy];
+        _url = url;
+    }
+    
+    return self;
+}
+
 ////////////////////////////////////////////////////////////////////////
 #pragma mark - Class Methods
 ////////////////////////////////////////////////////////////////////////

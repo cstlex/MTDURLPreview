@@ -10,7 +10,7 @@
 @class MTDURLPreview;
 
 
-@interface MTDURLPreviewView : UIView
+@interface MTDURLPreviewView : UIControl
 
 + (CGFloat)neededHeightForTitle:(NSString *)title
                          domain:(NSString *)domain

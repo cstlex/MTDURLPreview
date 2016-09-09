@@ -37,7 +37,7 @@ static UIFont *domainFont = nil;
 
         _titleLabel = [self labelWithFont:titleFont
                                 textColor:_textColor
-                            numberOfLines:0
+                            numberOfLines:1
                             lineBreakMode:kMTDTitleLineBreakMode];
         [self addSubview:_titleLabel];
 
@@ -215,11 +215,12 @@ static UIFont *domainFont = nil;
 
     if (shouldLayout) {
         _imageView.frame = CGRectMake(kMTDPadding, kMTDPadding + 3.f, kMTDImageDimension, kMTDImageDimension);
-        self.titleLabel.frame = CGRectMake(textX, kMTDPadding, textWidth, sizeTitle.height);
+        self.titleLabel.frame = CGRectMake(textX, kMTDPadding, textWidth, ceil(self.titleLabel.font.lineHeight));
         self.domainLabel.frame = CGRectMake(textX, CGRectGetMaxY(self.titleLabel.frame), textWidth, domainHeight);
     }
 
-    return CGSizeMake(size.width, MAX(minHeight, kMTDPadding + sizeTitle.height + domainHeight + kMTDPadding));
+//    return CGSizeMake(size.width, MAX(minHeight, kMTDPadding + sizeTitle.height + domainHeight + kMTDPadding));
+    return CGSizeMake(size.width, MAX(minHeight, kMTDPadding + 3.f + kMTDImageDimension + kMTDPadding));
 }
 
 @end

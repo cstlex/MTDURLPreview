@@ -97,7 +97,8 @@ static BOOL MTDStringHasImageExtension(NSString *string) {
     return [[MTDURLPreview alloc] initWithTitle:title
                                          domain:domain
                                        imageURL:imageURL
-                                        content:content];
+                                        content:content
+                                            url:[URL absoluteString]];
 }
 
 ////////////////////////////////////////////////////////////////////////
