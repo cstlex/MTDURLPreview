@@ -112,6 +112,8 @@ static BOOL MTDStringHasImageExtension(NSString *string) {
         imageAddress = [imageAddress substringFromIndex:2];
     } else if ([imageAddress hasPrefix:@"/"]) {
         imageAddress = [[@"http://" stringByAppendingString:URL.host] stringByAppendingString:imageAddress];
+    } else if ([imageAddress hasPrefix:@"./"]) {
+        imageAddress = [[@"http://" stringByAppendingString:[URL host]] stringByAppendingString:[imageAddress substringFromIndex:1]];
     }
     
     return [NSURL URLWithString:imageAddress];
