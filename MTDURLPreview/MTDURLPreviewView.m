@@ -23,8 +23,8 @@ static UIFont *domainFont = nil;
 
 + (void)initialize {
     if (self == [MTDURLPreviewView class]) {
-        titleFont = [UIFont boldSystemFontOfSize:16.f];
-        domainFont = [UIFont systemFontOfSize:15.f];
+        titleFont = [UIFont boldSystemFontOfSize:13.5f];
+        domainFont = [UIFont systemFontOfSize:12.f];
     }
 }
 
@@ -53,6 +53,28 @@ static UIFont *domainFont = nil;
     }
     
     return self;
+}
+
+- (void)initialize {
+    self.backgroundColor = [UIColor colorWithRed:246.f/255.f green:246.f/255.f blue:246.f/255.f alpha:1.f];
+    _textColor = [UIColor colorWithRed:62.f/255.f green:66.f/255.f blue:81.f/255.f alpha:1.f];
+    _borderColor = [UIColor colorWithRed:209.f/255.f green:209.f/255.f blue:209.f/255.f alpha:1.f];
+    
+    _titleLabel = [self labelWithFont:titleFont
+                            textColor:_textColor
+                        numberOfLines:2
+                        lineBreakMode:kMTDTitleLineBreakMode];
+    [self addSubview:_titleLabel];
+    
+    _domainLabel = [self labelWithFont:domainFont
+                             textColor:_textColor
+                         numberOfLines:1
+                         lineBreakMode:NSLineBreakByTruncatingTail];
+    [self addSubview:_domainLabel];
+    
+    
+    self.layer.borderWidth = 1.f / [UIScreen mainScreen].scale;
+    self.layer.borderColor = _borderColor.CGColor;
 }
 
 - (void)dealloc {
@@ -112,6 +134,9 @@ static UIFont *domainFont = nil;
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
+    if (backgroundColor == nil){
+        backgroundColor = [UIColor colorWithRed:246.f/255.f green:246.f/255.f blue:246.f/255.f alpha:1.f];
+    }
     [super setBackgroundColor:backgroundColor];
 
     self.titleLabel.backgroundColor = backgroundColor;
@@ -214,9 +239,9 @@ static UIFont *domainFont = nil;
     sizeTitle = CGSizeMake(ceil(sizeTitle.width), ceil(sizeTitle.height));
 
     if (shouldLayout) {
-        _imageView.frame = CGRectMake(kMTDPadding, kMTDPadding + 3.f, kMTDImageDimension, kMTDImageDimension);
-        self.titleLabel.frame = CGRectMake(textX, kMTDPadding, textWidth, ceil(self.titleLabel.font.lineHeight * 2));
-        self.domainLabel.frame = CGRectMake(textX, CGRectGetMaxY(self.titleLabel.frame), textWidth, domainHeight);
+        _imageView.frame = CGRectMake(kMTDPadding, kMTDPadding + 1.5f, kMTDImageDimension, kMTDImageDimension);
+        self.titleLabel.frame = CGRectMake(textX, kMTDPadding + 5.0f, textWidth, ceil(self.titleLabel.font.lineHeight * 2));
+        self.domainLabel.frame = CGRectMake(textX, CGRectGetMaxY(self.titleLabel.frame)+3.0f, textWidth, domainHeight);
     }
 
 //    return CGSizeMake(size.width, MAX(minHeight, kMTDPadding + sizeTitle.height + domainHeight + kMTDPadding));

@@ -8,7 +8,7 @@
 
 
 @class MTDURLPreview;
-
+#import <UIKit/UIKit.h>
 
 @interface MTDURLPreviewView : UIControl
 
@@ -38,6 +38,7 @@
 + (CGFloat)neededHeightForURLPreview:(MTDURLPreview *)preview
                   constrainedToWidth:(CGFloat)width;
 
+- (void)initialize;
 - (void)setFromURLPreview:(MTDURLPreview *)preview;
 
 @end
