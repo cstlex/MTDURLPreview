@@ -47,6 +47,7 @@
 		9B7C0616179D37D7009D8A0F /* MTDURLPreview.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MTDURLPreview.bundle; sourceTree = "<group>"; };
 		9BF7A70C17A90FC700819735 /* MTDURLPreviewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDURLPreviewCache.h; sourceTree = "<group>"; };
 		9BF7A70D17A90FC700819735 /* MTDURLPreviewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDURLPreviewCache.m; sourceTree = "<group>"; };
+		CC56245022A75B5B00C775B5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 		9B7C05EC179D3301009D8A0F = {
 			isa = PBXGroup;
 			children = (
+				CC56245022A75B5B00C775B5 /* Colors.xcassets */,
 				9B7C05FA179D3301009D8A0F /* MTDURLPreview */,
 				9B7C0615179D37C2009D8A0F /* Resources */,
 				9B7C05F7179D3301009D8A0F /* Frameworks */,
@@ -167,6 +169,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 9B7C05EC179D3301009D8A0F;
@@ -223,7 +226,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(SDK_ROOT)/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -250,7 +253,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(SDK_ROOT)/usr/include/libxml2",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

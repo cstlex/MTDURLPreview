@@ -31,9 +31,9 @@ static UIFont *domainFont = nil;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorWithRed:246.f/255.f green:246.f/255.f blue:246.f/255.f alpha:1.f];
-        _textColor = [UIColor colorWithRed:62.f/255.f green:66.f/255.f blue:81.f/255.f alpha:1.f];
-        _borderColor = [UIColor colorWithRed:209.f/255.f green:209.f/255.f blue:209.f/255.f alpha:1.f];
+        self.backgroundColor = [UIColor colorNamed:@"Background"];
+        _textColor = [UIColor colorNamed:@"Title"];
+        _borderColor = [UIColor colorNamed:@"Border"];
 
         _titleLabel = [self labelWithFont:titleFont
                                 textColor:_textColor
@@ -56,9 +56,9 @@ static UIFont *domainFont = nil;
 }
 
 - (void)initialize {
-    self.backgroundColor = [UIColor colorWithRed:246.f/255.f green:246.f/255.f blue:246.f/255.f alpha:1.f];
-    _textColor = [UIColor colorWithRed:62.f/255.f green:66.f/255.f blue:81.f/255.f alpha:1.f];
-    _borderColor = [UIColor colorWithRed:209.f/255.f green:209.f/255.f blue:209.f/255.f alpha:1.f];
+    self.backgroundColor = [UIColor colorNamed:@"Background"];
+    _textColor = [UIColor colorNamed:@"Title"];
+    _borderColor = [UIColor colorNamed:@"Border"];
     
     _titleLabel = [self labelWithFont:titleFont
                             textColor:_textColor
@@ -135,7 +135,7 @@ static UIFont *domainFont = nil;
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     if (backgroundColor == nil){
-        backgroundColor = [UIColor colorWithRed:246.f/255.f green:246.f/255.f blue:246.f/255.f alpha:1.f];
+        backgroundColor = [UIColor colorNamed:@"Background"];
     }
     [super setBackgroundColor:backgroundColor];
 
