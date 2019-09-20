@@ -31,9 +31,24 @@ static UIFont *domainFont = nil;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor colorNamed:@"Background"];
-        _textColor = [UIColor colorNamed:@"Title"];
-        _borderColor = [UIColor colorNamed:@"Border"];
+        if (@available(iOS 13, *)){
+            if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark){
+                self.backgroundColor = [UIColor colorWithRed:0.259f green:0.282f blue:0.302f alpha:1.0f];
+                _textColor = [UIColor whiteColor];
+                _subtitleColor = [UIColor colorWithRed:0.757f green:0.761f blue:0.804f alpha:1.0f];
+                _borderColor = [[UIColor clearColor] colorWithAlphaComponent:0.0f];
+            } else {
+                self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+                _textColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+                _subtitleColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+                _borderColor = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+            }
+        } else {
+            self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+            _textColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            _subtitleColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            _borderColor = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+        }
 
         _titleLabel = [self labelWithFont:titleFont
                                 textColor:_textColor
@@ -42,23 +57,42 @@ static UIFont *domainFont = nil;
         [self addSubview:_titleLabel];
 
         _domainLabel = [self labelWithFont:domainFont
-                                 textColor:_textColor
+                                 textColor:_subtitleColor
                              numberOfLines:1
                              lineBreakMode:NSLineBreakByTruncatingTail];
         [self addSubview:_domainLabel];
 
 
-        self.layer.borderWidth = 1.f / [UIScreen mainScreen].scale;
-        self.layer.borderColor = _borderColor.CGColor;
+        if (CGColorGetAlpha(_borderColor.CGColor) == 0.0f) {
+            self.layer.borderWidth = 0.0f;
+        } else {
+            self.layer.borderWidth = 1.f / [UIScreen mainScreen].scale;
+            self.layer.borderColor = _borderColor.CGColor;
+        }
     }
     
     return self;
 }
 
 - (void)initialize {
-    self.backgroundColor = [UIColor colorNamed:@"Background"];
-    _textColor = [UIColor colorNamed:@"Title"];
-    _borderColor = [UIColor colorNamed:@"Border"];
+    if (@available(iOS 13, *)){
+        if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark){
+            self.backgroundColor = [UIColor colorWithRed:0.259f green:0.282f blue:0.302f alpha:1.0f];
+            _textColor = [UIColor whiteColor];
+            _subtitleColor = [UIColor colorWithRed:0.757f green:0.761f blue:0.804f alpha:1.0f];
+            _borderColor = [[UIColor clearColor] colorWithAlphaComponent:0.0f];
+        } else {
+            self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+            _textColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            _subtitleColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            _borderColor = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+        }
+    } else {
+        self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+        _textColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+        _subtitleColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+        _borderColor = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+    }
     
     _titleLabel = [self labelWithFont:titleFont
                             textColor:_textColor
@@ -67,14 +101,42 @@ static UIFont *domainFont = nil;
     [self addSubview:_titleLabel];
     
     _domainLabel = [self labelWithFont:domainFont
-                             textColor:_textColor
+                             textColor:_subtitleColor
                          numberOfLines:1
                          lineBreakMode:NSLineBreakByTruncatingTail];
     [self addSubview:_domainLabel];
     
     
-    self.layer.borderWidth = 1.f / [UIScreen mainScreen].scale;
-    self.layer.borderColor = _borderColor.CGColor;
+    if (CGColorGetAlpha(_borderColor.CGColor) == 0.0f) {
+        self.layer.borderWidth = 0.0f;
+    } else {
+        self.layer.borderWidth = 1.f / [UIScreen mainScreen].scale;
+        self.layer.borderColor = _borderColor.CGColor;
+    }
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    [super traitCollectionDidChange:previousTraitCollection];
+    
+    if (@available(iOS 13, *)) {
+        UIColor *tc;
+        UIColor *stc;
+        UIColor *bc;
+        if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark){
+            self.backgroundColor = [UIColor colorWithRed:0.259f green:0.282f blue:0.302f alpha:1.0f];
+            tc = [UIColor whiteColor];
+            stc = [UIColor colorWithRed:0.757f green:0.761f blue:0.804f alpha:1.0f];
+            stc = [[UIColor clearColor] colorWithAlphaComponent:0.0f];
+        } else {
+            self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+            tc = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            stc = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            stc = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+        }
+        [self setTextColor:tc];
+        [self setSubtitleColor:stc];
+        [self setBorderColor:bc];
+    }
 }
 
 - (void)dealloc {
@@ -135,7 +197,16 @@ static UIFont *domainFont = nil;
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor {
     if (backgroundColor == nil){
-        backgroundColor = [UIColor colorNamed:@"Background"];
+        if (@available(iOS 13, *)){
+            if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark){
+                backgroundColor = [UIColor colorWithRed:0.259f green:0.282f blue:0.302f alpha:1.0f];
+            } else {
+                backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+                
+            }
+        } else {
+            backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+        }
     }
     [super setBackgroundColor:backgroundColor];
 

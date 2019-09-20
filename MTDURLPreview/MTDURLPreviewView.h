@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) UIColor *backgroundColor;
 @property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *subtitleColor;
 @property (nonatomic, strong) UIColor *borderColor;
 
 @end
