@@ -126,12 +126,12 @@ static UIFont *domainFont = nil;
             self.backgroundColor = [UIColor colorWithRed:0.259f green:0.282f blue:0.302f alpha:1.0f];
             tc = [UIColor whiteColor];
             stc = [UIColor colorWithRed:0.757f green:0.761f blue:0.804f alpha:1.0f];
-            stc = [[UIColor clearColor] colorWithAlphaComponent:0.0f];
+            bc = [[UIColor clearColor] colorWithAlphaComponent:0.0f];
         } else {
             self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
             tc = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
             stc = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
-            stc = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+            bc = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
         }
         [self setTextColor:tc];
         [self setSubtitleColor:stc];
