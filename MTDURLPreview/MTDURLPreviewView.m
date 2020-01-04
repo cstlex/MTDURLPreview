@@ -74,6 +74,51 @@ static UIFont *domainFont = nil;
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    
+    if (@available(iOS 13, *)){
+        if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark){
+            self.backgroundColor = [UIColor colorWithRed:0.259f green:0.282f blue:0.302f alpha:1.0f];
+            _textColor = [UIColor whiteColor];
+            _subtitleColor = [UIColor colorWithRed:0.757f green:0.761f blue:0.804f alpha:1.0f];
+            _borderColor = [[UIColor clearColor] colorWithAlphaComponent:0.0f];
+        } else {
+            self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+            _textColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            _subtitleColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+            _borderColor = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+        }
+    } else {
+        self.backgroundColor = [UIColor colorWithRed:0.965f green:0.965f blue:0.965f alpha:1.0f];
+        _textColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+        _subtitleColor = [UIColor colorWithRed:0.243f green:0.259f blue:0.318f alpha:1.0f];
+        _borderColor = [UIColor colorWithRed:0.820f green:0.820f blue:0.820f alpha:1.0f];
+    }
+
+    _titleLabel = [self labelWithFont:titleFont
+                            textColor:_textColor
+                        numberOfLines:2
+                        lineBreakMode:kMTDTitleLineBreakMode];
+    [self addSubview:_titleLabel];
+
+    _domainLabel = [self labelWithFont:domainFont
+                             textColor:_subtitleColor
+                         numberOfLines:1
+                         lineBreakMode:NSLineBreakByTruncatingTail];
+    [self addSubview:_domainLabel];
+
+
+    if (CGColorGetAlpha(_borderColor.CGColor) == 0.0f) {
+        self.layer.borderWidth = 0.0f;
+    } else {
+        self.layer.borderWidth = 1.f / [UIScreen mainScreen].scale;
+        self.layer.borderColor = _borderColor.CGColor;
+    }
+    
+    return self;
+}
+
 - (void)initialize {
     if (@available(iOS 13, *)){
         if ([[self traitCollection] userInterfaceStyle] == UIUserInterfaceStyleDark){
