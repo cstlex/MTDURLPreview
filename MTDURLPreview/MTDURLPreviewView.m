@@ -277,7 +277,8 @@ static UIFont *domainFont = nil;
     self.domainLabel.text = preview.domain;
     self.contentLabel.text = preview.content;
 
-    UIImage *placeholderImage = [UIImage imageNamed:@"MTDURLPreview.bundle/image-placeholder"];
+//    UIImage *placeholderImage = [UIImage imageNamed:@"MTDURLPreview.bundle/image-placeholder"];
+    UIImage *placeholderImage = [UIImage imageNamed:@"LinkPlaceholder"];
     self.imageView.image = placeholderImage;
     if (preview.imageURL != nil) {
         // Support for SDWebImage
