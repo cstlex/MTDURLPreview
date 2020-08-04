@@ -49,6 +49,14 @@ static BOOL MTDStringHasImageExtension(NSString *string) {
     if (title == nil) {
         MTDHTMLElement *titleElement = [MTDHTMLElement nodeForXPathQuery:@"//html/head/title" onHTML:data];
         title = titleElement.contentString;
+        if (title == nil){
+            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            if ([html containsString:@"<meta property=\"og:title\" content=\""]){
+                title = [[[[html componentsSeparatedByString:@"<meta property=\"og:title\" content=\""] objectAtIndex:1] componentsSeparatedByString:@"\""] objectAtIndex:0];
+            } else if ([html containsString:@"<title>"]){
+                title = [[[[html componentsSeparatedByString:@"<title>"] objectAtIndex:1] componentsSeparatedByString:@"</title>"] objectAtIndex:0];
+            }
+        }
     }
 
     if (imageURL == nil) {

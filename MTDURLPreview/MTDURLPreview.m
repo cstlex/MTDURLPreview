@@ -81,7 +81,9 @@ static MTDURLPreviewCache* mtd_preview_cache() {
             completion(cachedPreview, nil);
         });
     } else {
-        [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:URL] queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+        [request setValue:@"Mozilla" forHTTPHeaderField:@"User-Agent"];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *responseData, NSError *error) {
             dispatch_async(mtd_url_preview_queue(), ^{
                 if (responseData != nil) {
                     MTDURLPreview *preview = [MTDURLPreviewParser previewFromHTMLData:responseData URL:URL];

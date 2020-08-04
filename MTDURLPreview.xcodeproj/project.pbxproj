@@ -48,6 +48,7 @@
 		9BF7A70C17A90FC700819735 /* MTDURLPreviewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTDURLPreviewCache.h; sourceTree = "<group>"; };
 		9BF7A70D17A90FC700819735 /* MTDURLPreviewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTDURLPreviewCache.m; sourceTree = "<group>"; };
 		CC56245022A75B5B00C775B5 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		CCBD5B5224D9AD6D0095D741 /* MTDURLPreview-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTDURLPreview-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 				9BF7A70C17A90FC700819735 /* MTDURLPreviewCache.h */,
 				9BF7A70D17A90FC700819735 /* MTDURLPreviewCache.m */,
 				9B7C05FB179D3301009D8A0F /* Supporting Files */,
+				CCBD5B5224D9AD6D0095D741 /* MTDURLPreview-Bridging-Header.h */,
 			);
 			path = MTDURLPreview;
 			sourceTree = "<group>";
@@ -163,6 +165,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "@myell0w";
+				TargetAttributes = {
+					9B7C05F4179D3301009D8A0F = {
+						LastSwiftMigration = 1160;
+					};
+				};
 			};
 			buildConfigurationList = 9B7C05F0179D3301009D8A0F /* Build configuration list for PBXProject "MTDURLPreview" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -262,24 +269,33 @@
 		9B7C0604179D3301009D8A0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/MTDURLPreview.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MTDURLPreview/MTDURLPreview-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		9B7C0605179D3301009D8A0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/MTDURLPreview.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Prefix.pch;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MTDURLPreview/MTDURLPreview-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
