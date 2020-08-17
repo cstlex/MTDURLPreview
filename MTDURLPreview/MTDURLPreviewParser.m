@@ -46,11 +46,12 @@ static BOOL MTDStringHasImageExtension(NSString *string) {
         }
     }
 
+    NSString *html;
     if (title == nil) {
         MTDHTMLElement *titleElement = [MTDHTMLElement nodeForXPathQuery:@"//html/head/title" onHTML:data];
         title = titleElement.contentString;
         if (title == nil){
-            NSString *html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             if ([html containsString:@"<meta property=\"og:title\" content=\""]){
                 title = [[[[html componentsSeparatedByString:@"<meta property=\"og:title\" content=\""] objectAtIndex:1] componentsSeparatedByString:@"\""] objectAtIndex:0];
             } else if ([html containsString:@"<title>"]){
@@ -93,6 +94,17 @@ static BOOL MTDStringHasImageExtension(NSString *string) {
                     imageURL = [self sanitizedImageURLWithBaseURL:URL imageAddress:imageAddress];
                     break;
                 }
+            }
+        }
+        
+        if (imageURL == nil){
+            if (!html){
+                html = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            }
+            if ([html containsString:@"<meta property=\"og:image\" content=\""]){
+                imageURL = [[NSURL alloc] initWithString:[[[[html componentsSeparatedByString:@"<meta property=\"og:image\" content=\""] objectAtIndex:1] componentsSeparatedByString:@"\""] objectAtIndex:0]];
+            } else if ([html containsString:@"<link rel=\"image_src\" href=\""]){
+                imageURL = [[NSURL alloc] initWithString:[[[[html componentsSeparatedByString:@"<link rel=\"image_src\" href=\""] objectAtIndex:1] componentsSeparatedByString:@"\""] objectAtIndex:0]];
             }
         }
     }
